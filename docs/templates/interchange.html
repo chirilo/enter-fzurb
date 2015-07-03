@@ -1,0 +1,69 @@
+---
+name: interchange
+url: /interchange
+title: Interchange
+---
+
+<h2>Interchange</h2>
+<h3 class="subheader">A simple JavaScript solution for responsive images. But not just images, it can even load in HTML partials. Interchange uses media queries to dynamically load responsive content that is appropriate for different users' browsers.</h3>
+
+<hr>
+
+<zf-interchange>
+  <img media="small" src="assets/img/interchange/small.jpg">
+  <img media="medium" src="assets/img/interchange/medium.jpg">
+  <img media="large"src="assets/img/interchange/large.jpg">
+</zf-interchange>
+
+<hr>
+
+<p>Interchange allows you to specify what specific content to display based on the user's current screen size. This is great for loading up a mobile-friendly component on small devices, and a more robust or heavier load component on desktops.</p>
+
+<p>To set up Interchange, start with a container with the <code>zf-interchange</code> directive.</p>
+
+<hljs language="html">
+<div zf-interchange>
+</div>
+</hljs>
+
+<hr>
+
+<h3>Use with Images</h3>
+
+<p>A basic example of Interchange involves images. In the below example, we're loading images with a lower resolution (and thus a lower file size) on small screens, and progressively higher-res images on larger screens.</p>
+
+<p>Note the values of the <code>media</code> attributes on each item inside the container&mdash;these are the breakpoints defined in your Sass files. Check out the <a ui-sref="media-queries">documentation for media queries</a> to learn how these breakpoints can be changed.</p>
+
+<hljs language="html">
+<zf-interchange>
+  <img media="small" src="assets/img/small.jpg" />
+  <img media="medium" src="assets/img/medium.jpg" />
+  <img media="large"src="assets/img/large.jpg" />
+</zf-interchange>
+</hljs>
+
+<hr>
+
+<h3>Use with HTML</h3>
+<p>Interchange can also switch between entire chunks of HTML. These can be loaded as partials (external HTML files), or by dropping the content right into the tag.</p>
+
+<p class="card docs-callout">Note that partials are reloaded every time, meaning if the user's device scales from medium, to small, back to medium, the medium partial will be loaded twice.</p>
+
+<div class="grid-block">
+  <div class="small-12 medium-6 grid-content">
+<hljs>
+<zf-interchange>
+  <div media="small" src="templates/interchange/partial_1.html"></div>
+  <div media="medium" src="templates/interchange/partial_2.html"></div>
+  <div media="large">You are on a <strong>large screen</strong>.</div>
+</zf-interchange>
+</hljs>
+  </div>
+  <div class="small-12 medium-6 grid-content">
+    <zf-interchange id="testid">
+      <div media="small" src="templates/interchange/partial_1.html"></div>
+      <div media="medium" src="templates/interchange/partial_2.html"></div>
+      <div media="large">You are on a <strong>large screen</strong>.</div>
+    </zf-interchange>
+  </div>
+</div>
